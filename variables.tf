@@ -81,7 +81,7 @@ variable "DOCKER_CIDR" {
 
 variable "K8S_KUBE_CONFIG" {
   description = "Path to Kube Config directory"
-  deafult = "$HOME/.kube/"
+  default = "$HOME/.kube/"
 }
 
 variable "K8S_HELM_HOME" {
