@@ -24,44 +24,6 @@ resource "azurerm_role_assignment" "aks-network-contributor" {
   principal_id         = "${azuread_service_principal.aks.id}"
 }
 
-# kubernetes cluster
-# resource "azurerm_kubernetes_cluster" "main" {
-#   name                = "${var.PROJECT}${var.INSTANCE}${var.ENVIRONMENT}aks"
-#   location            = "${azurerm_resource_group.main.location}"
-#   resource_group_name = "${azurerm_resource_group.main.name}"
-
-#   depends_on = [
-#     "azurerm_role_assignment.aks-network-contributor",
-#     "azurerm_public_ip.ingress_ip"
-#   ]
-
-#   dns_prefix         = "${var.PROJECT}${var.INSTANCE}${var.ENVIRONMENT}"
-#   kubernetes_version = "1.11.5"
-
-#   linux_profile {
-#     admin_username = "kadm"
-#     ssh_key {
-#       key_data = "${var.AKS_SSH_ADMIN_KEY}"
-#     }
-#   }
-#   agent_pool_profile {
-#     name            = "default"
-#     count           = 1
-#     vm_size         = "Standard_D3_v2"
-#     os_type         = "Linux"
-#     os_disk_size_gb = 30
-#   }
-#   service_principal {
-#     client_id     = "${azurerm_azuread_application.aks.application_id}"
-#     client_secret = "${azurerm_azuread_service_principal_password.aks.value}"
-#   }
-
-#   tags {
-#     project = "${var.PROJECT}"
-#     instance = "${var.INSTANCE}"
-#     environment = "${var.ENVIRONMENT}"
-#   }
-# }
 
 resource "azurerm_kubernetes_cluster" "main" {
   name                = "${var.PROJECT}${var.INSTANCE}${var.ENVIRONMENT}${random_integer.uuid.result}aks"
