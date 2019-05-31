@@ -80,11 +80,13 @@ variable "DOCKER_CIDR" {
  */
 
 variable "K8S_KUBE_CONFIG" {
-  description = "Path to Kube Config File"
+  description = "Path to Kube Config directory"
+  deafult = "$HOME/.kube/"
 }
 
 variable "K8S_HELM_HOME" {
   description = "Path to Helm Home Directory"
+  default = "$HOME/.helm/"
 }
 
 variable "tiller_version" {

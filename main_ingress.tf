@@ -1,6 +1,6 @@
 # ingress ip
 resource "azurerm_public_ip" "ingress_ip" {
-  name                = "${var.PROJECT}${var.INSTANCE}${var.ENVIRONMENT}${random_integer.uuid.result}iip"
+  name                = "${var.PROJECT}${var.INSTANCE}${var.ENVIRONMENT}${random_integer.uuid.result}pip"
   location            = "${azurerm_resource_group.main.location}"
   resource_group_name = "${azurerm_resource_group.main.name}"
 
@@ -124,11 +124,11 @@ resource "local_file" "cert-manager-check" {
 }
 
 
-# letsencrypt
-resource "helm_release" "letsencrypt" {
-  name      = "letsencrypt"
-  chart     = "${path.root}/charts/letsencrypt/"
-  namespace = "kube-system"
-  timeout   = 1800
-  depends_on = ["local_file.cert-manager-check" ]
-}
+# # letsencrypt
+# resource "helm_release" "letsencrypt" {
+#   name      = "letsencrypt"
+#   chart     = "${path.root}/charts/letsencrypt/"
+#   namespace = "kube-system"
+#   timeout   = 1800
+#   depends_on = ["local_file.cert-manager-check" ]
+# }
