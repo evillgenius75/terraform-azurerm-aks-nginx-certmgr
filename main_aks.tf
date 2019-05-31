@@ -73,7 +73,7 @@ resource "azurerm_kubernetes_cluster" "main" {
 # kube config and helm init
 resource "local_file" "kube_config" {
   # kube config
-  filename = "${var.K8S_KUBE_CONFIG}"
+  filename = "${var.K8S_KUBE_CONFIG}/${var.PROJECT}${var.INSTANCE}${var.ENVIRONMENT}${random_integer.uuid.result}aks"
   content  = "${azurerm_kubernetes_cluster.main.kube_config_raw}"
 
   # helm init
