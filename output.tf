@@ -15,3 +15,6 @@ output "KUBE_CONFIG_PATH" {
   value = "${local_file.kube_config.filename}"
 }
 
+output "AKS_SP_APPID" {
+  value = "${azuread_application.aks.application_id}"
+}
